@@ -10,6 +10,13 @@
   },
   "jspm": {
     "main": false,
+    "files": [
+      "src/",
+      "CHANGELOG.md",
+      "esdoc.json",
+      "LICENSE",
+      "README.md"
+    ],
     "dependencies": {
       "backbone-es6": "github:typhonjs/backbone-es6@master",
       "underscore": "npm:underscore@^1.8.3"
