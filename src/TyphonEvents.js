@@ -344,6 +344,8 @@ const s_TRIGGER_THEN_EVENTS = (events, args) =>
  *
  * Please refer to the Events documentation for all inherited functionality.
  *
+ * `triggerDefer` - Defers invoking `trigger`.
+ *
  * `triggerFirst` - Only invokes the first target matched and passes back any result to the callee.
  *
  * `triggerResults` - Invokes all targets matched and passes back an array of results in an array to the callee.
@@ -353,6 +355,14 @@ const s_TRIGGER_THEN_EVENTS = (events, args) =>
  */
 export default class TyphonEvents extends Events
 {
+   /**
+    * Defers invoking `trigger`.
+    */
+   triggerDefer()
+   {
+      setTimeout(() => { super.trigger(...arguments); }, 0);
+   }
+
    /**
     * Provides `trigger` functionality that only invokes the first target matched and passes back any result to
     * the callee.
