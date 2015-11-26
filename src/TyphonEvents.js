@@ -24,7 +24,7 @@ export default class TyphonEvents extends Events
     */
    triggerDefer()
    {
-      setTimeout(() => { super.trigger.apply(this, arguments); }, 0);
+      setTimeout(() => { super.trigger(...arguments); }, 0);
    }
 
    /**
