@@ -4,6 +4,8 @@ import TyphonLoggedEvents  from './TyphonLoggedEvents.js';
 
 const eventbus = new TyphonLoggedEvents();
 
+eventbus.setEventbusName('mainEventbus');
+
 /**
  * Exports an instance of `TyphonLoggedEvents` which adds asynchronous capabilities to `Backbone.Events` which is used
  * as a main eventbus. Note that an instance of `TyphonLoggedEvents` is exported and is also associated to a mapped

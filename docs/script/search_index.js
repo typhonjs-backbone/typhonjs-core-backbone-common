@@ -1554,9 +1554,21 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "typhonjs-core-backbone-common/src/typhonloggedevents.js~typhonloggedevents#geteventbusname",
+    "class/typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents.html#instance-method-getEventbusName",
+    "typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents#getEventbusName",
+    "method"
+  ],
+  [
     "typhonjs-core-backbone-common/src/typhonloggedevents.js~typhonloggedevents#getloglevel",
     "class/typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents.html#instance-method-getLogLevel",
     "typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents#getLogLevel",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/src/typhonloggedevents.js~typhonloggedevents#seteventbusname",
+    "class/typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents.html#instance-method-setEventbusName",
+    "typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents#setEventbusName",
     "method"
   ],
   [
