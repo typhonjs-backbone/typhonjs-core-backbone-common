@@ -79,10 +79,14 @@ export default class TyphonEvents extends Events
 {
    /**
     * Defers invoking `trigger`.
+    *
+    * @returns {TyphonEvents}
     */
    triggerDefer()
    {
       setTimeout(() =&gt; { super.trigger(...arguments); }, 0);
+
+      return this;
    }
 
    /**

@@ -75,10 +75,14 @@ export default class TyphonLoggedEvents extends TyphonEvents
 
    /**
     * Defers invoking `trigger`.
+    *
+    * @returns {TyphonLoggedEvents}
     */
    triggerDefer()
    {
       setTimeout(() => { this.trigger(...arguments); }, 0);
+
+      return this;
    }
 
    /**
@@ -98,7 +102,7 @@ export default class TyphonLoggedEvents extends TyphonEvents
 
       logger.post(this._logLevel, { busName: this._eventbusName, eventName: name, params });
 
-      return super.trigger(name, ...params);
+      return super.trigger(...arguments);
    }
 
    /**
@@ -116,7 +120,7 @@ export default class TyphonLoggedEvents extends TyphonEvents
 
       logger.post(this._logLevel, { busName: this._eventbusName, eventName: name, params });
 
-      return super.triggerFirst(name, ...params);
+      return super.triggerFirst(...arguments);
    }
 
    /**
@@ -134,7 +138,7 @@ export default class TyphonLoggedEvents extends TyphonEvents
 
       logger.post(this._logLevel, { busName: this._eventbusName, eventName: name, params });
 
-      return super.triggerResults(name, ...params);
+      return super.triggerResults(...arguments);
    }
 
    /**
@@ -153,6 +157,6 @@ export default class TyphonLoggedEvents extends TyphonEvents
 
       logger.post(this._logLevel, { busName: this._eventbusName, eventName: name, params });
 
-      return super.triggerThen(name, ...params);
+      return super.triggerThen(...arguments);
    }
 }
