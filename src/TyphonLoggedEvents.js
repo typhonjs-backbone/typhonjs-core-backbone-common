@@ -1,12 +1,14 @@
 'use strict';
 
-import _       from 'underscore';
-import Events  from 'backbone-es6/src/Events.js';
+import _             from 'underscore';
+import TyphonEvents  from './TyphonEvents.js';
 
-import logger  from 'logger';
+import logger        from 'logger';
 
 /**
- * TyphonEvents adds new functionality for trigger events. The following are new trigger mechanisms:
+ * TyphonLoggedEvents posts a message to the `logger` before invoking the parent TyphonEvents method.
+ *
+ * Adds new functionality for trigger events. The following are new trigger mechanisms:
  *
  * Please refer to the Events documentation for all inherited functionality.
  *
@@ -19,7 +21,7 @@ import logger  from 'logger';
  * `triggerThen` - Invokes all targets matched and adds any returned promises through Promise.all which returns
  *  a single promise to the callee.
  */
-export default class TyphonLoggedEvents extends Events
+export default class TyphonLoggedEvents extends TyphonEvents
 {
    /**
     * Constructs TyphonLoggedEvents and sets the default log level to `debug`.
