@@ -100,7 +100,7 @@ export default class TyphonLoggedEvents extends TyphonEvents
    {
       const params = arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : undefined;
 
-      logger.post(this._logLevel, { busName: this._eventbusName, eventName: name, params });
+      logger.post(this._logLevel, { busName: this._eventbusName, triggerType: 'trigger', eventName: name, params });
 
       return super.trigger(...arguments);
    }
@@ -118,9 +118,12 @@ export default class TyphonLoggedEvents extends TyphonEvents
    {
       const params = arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : undefined;
 
-      logger.post(this._logLevel, { busName: this._eventbusName, eventName: name, params });
+      const results = super.triggerFirst(...arguments);
 
-      return super.triggerFirst(...arguments);
+      logger.post(this._logLevel,
+       { busName: this._eventbusName, triggerType: 'triggerFirst', eventName: name, params, results });
+
+      return results;
    }
 
    /**
@@ -136,9 +139,12 @@ export default class TyphonLoggedEvents extends TyphonEvents
    {
       const params = arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : undefined;
 
-      logger.post(this._logLevel, { busName: this._eventbusName, eventName: name, params });
+      const results = super.triggerResults(...arguments);
 
-      return super.triggerResults(...arguments);
+      logger.post(this._logLevel,
+       { busName: this._eventbusName, triggerType: 'triggerResults', eventName: name, params, results });
+
+      return results;
    }
 
    /**
@@ -155,8 +161,11 @@ export default class TyphonLoggedEvents extends TyphonEvents
    {
       const params = arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : undefined;
 
-      logger.post(this._logLevel, { busName: this._eventbusName, eventName: name, params });
+      const results = super.triggerThen(...arguments);
 
-      return super.triggerThen(...arguments);
+      logger.post(this._logLevel,
+       { busName: this._eventbusName, triggerType: 'triggerThen', eventName: name, params, results });
+
+      return results;
    }
 }
