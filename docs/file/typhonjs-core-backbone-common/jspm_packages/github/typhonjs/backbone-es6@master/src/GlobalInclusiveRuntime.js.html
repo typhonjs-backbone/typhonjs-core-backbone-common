@@ -33,6 +33,7 @@
   <ul>
     
   <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/typhonjs-core-backbone-common/src/TyphonEvents.js~TyphonEvents.html">TyphonEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents.html">TyphonLoggedEvents</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-typhonExtend">typhonExtend</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">backbone-es6/src</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/backbone-es6@master/src/Backbone.js~Backbone.html">Backbone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/backbone-es6@master/src/Collection.js~Collection.html">Collection</a></span></span></li>
@@ -48,15 +49,17 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-BackboneProxy">BackboneProxy</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-collection">collection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-model">model</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">(typhonjs-core-logging):<br>logger/src</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html">ConsoleLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html">Logger</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">backbone-es6/src/GlobalInclusiveRuntime.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * GlobalInclusiveRuntime.js (Backbone) -- Initializes $ and _ setting them to &quot;root.$&quot; and &quot;root._&quot; before
- * delegating to GlobalRuntime.js to initialize Backbone. &quot;root&quot; is defined as self in the browser or global if
- * on the server.
+ * GlobalInclusiveRuntime.js (Backbone) -- Initializes jQuery and Underscore setting them to &quot;root.$&quot;, &quot;root.jQuery&quot;
+ * and &quot;root._&quot; respectively before delegating to GlobalRuntime.js to initialize Backbone. &quot;root&quot; is defined as self in
+ * the browser or global if on the server.
  *
  * Note: We use CJS here as ES6 imports are hoisted. We must set root.$ before initializing Backbone.
  */
@@ -72,7 +75,7 @@ var root = (typeof self === &apos;object&apos; &amp;&amp; self.self === self &am
 
 if (typeof root !== &apos;undefined&apos; &amp;&amp; root !== null)
 {
-   root.$ = require(&apos;jquery&apos;);
+   root.$ = root.jQuery = require(&apos;jquery&apos;);
    root._ = require(&apos;underscore&apos;);
 }
 else

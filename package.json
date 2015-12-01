@@ -9,16 +9,9 @@
     "url": "https://github.com/typhonjs/typhonjs-core-backbone-common/typhonjs-core-backbone-common.git"
   },
   "jspm": {
-    "main": false,
-    "files": [
-      "src/",
-      "CHANGELOG.md",
-      "esdoc.json",
-      "LICENSE",
-      "README.md"
-    ],
     "dependencies": {
       "backbone-es6": "github:typhonjs/backbone-es6@master",
+      "logger": "github:typhonjs/typhonjs-core-logging@master",
       "underscore": "npm:underscore@^1.8.3"
     },
     "devDependencies": {
