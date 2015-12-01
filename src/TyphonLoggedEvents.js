@@ -161,11 +161,8 @@ export default class TyphonLoggedEvents extends TyphonEvents
    {
       const params = arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : undefined;
 
-      const results = super.triggerThen(...arguments);
+      logger.post(this._logLevel, { busName: this._eventbusName, triggerType: 'triggerThen', eventName: name, params });
 
-      logger.post(this._logLevel,
-       { busName: this._eventbusName, triggerType: 'triggerThen', eventName: name, params, results });
-
-      return results;
+      return super.triggerThen(...arguments);
    }
 }
