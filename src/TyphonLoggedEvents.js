@@ -117,8 +117,7 @@ export default class TyphonLoggedEvents extends TyphonEvents
     */
    trigger(name)
    {
-//      const params = arguments.length > 1 ? _.map(Array.prototype.slice.call(arguments, 1), _.clone) : [];
-      const params = arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : [];
+      const params = arguments.length > 1 ? _.map(Array.prototype.slice.call(arguments, 1), _.clone) : [];
 
       const logData = { busName: this._eventbusName, triggerType: 'trigger', eventName: name, params };
 
