@@ -9,6 +9,7 @@
     "url": "https://github.com/typhonjs/typhonjs-core-backbone-common/typhonjs-core-backbone-common.git"
   },
   "jspm": {
+    "main": false,
     "dependencies": {
       "backbone-es6": "github:typhonjs/backbone-es6@master",
       "typhonjs-core-logging": "github:typhonjs/typhonjs-core-logging@master",
