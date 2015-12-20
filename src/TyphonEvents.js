@@ -20,6 +20,26 @@ import Events  from 'backbone-es6/src/Events.js';
 export default class TyphonEvents extends Events
 {
    /**
+    * Returns the current eventbusName.
+    *
+    * @returns {string|*}
+    */
+   getEventbusName()
+   {
+      return this._eventbusName;
+   }
+
+   /**
+    * Sets the eventbus name.
+    *
+    * @param {string}   name - The name for this eventbus.
+    */
+   setEventbusName(name)
+   {
+      this._eventbusName = name;
+   }
+
+   /**
     * Defers invoking `trigger`.
     *
     * @returns {TyphonEvents}

@@ -1,8 +1,12 @@
 'use strict';
 
+import _             from 'underscore';
+
 import TyphonEvents  from './TyphonEvents.js';
 
-import logger        from 'logger';
+import logger        from 'typhonjs-core-logging';
+
+import Utils         from 'typhonjs-core-utils/src/Utils.js';
 
 /**
  * TyphonLoggedEvents posts a message to the `logger` before invoking the parent TyphonEvents method.
@@ -34,13 +38,13 @@ export default class TyphonLoggedEvents extends TyphonEvents
    }
 
    /**
-    * Returns the current eventbusName.
+    * Returns the any event scrubber function.
     *
-    * @returns {string|*}
+    * @returns {function}
     */
-   getEventbusName()
+   getEventScrubber()
    {
-      return this._eventbusName;
+      return this._eventScrubber;
    }
 
    /**
@@ -54,13 +58,28 @@ export default class TyphonLoggedEvents extends TyphonEvents
    }
 
    /**
-    * Sets the eventbus name.
+    * Sets the current event scrubber. The event scrubber is run against the event data about to be logged. It should
     *
-    * @param {string}   name - The name for this eventbus.
+    *
+    * @param {function} eventScrubber - A function
     */
-   setEventbusName(name)
+   setEventScrubber(eventScrubber)
    {
-      this._eventbusName = name;
+      if (!_.isFunction(eventScrubber))
+      {
+         if (Utils.isNullOrUndef(eventScrubber))
+         {
+            this._eventScrubber = undefined;
+         }
+         else
+         {
+            throw new TypeError('setEventScrubber - `eventScrubber` is not a function.');
+         }
+      }
+      else
+      {
+         this._eventScrubber = eventScrubber;
+      }
    }
 
    /**
@@ -100,7 +119,9 @@ export default class TyphonLoggedEvents extends TyphonEvents
    {
       const params = arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : undefined;
 
-      logger.post(this._logLevel, { busName: this._eventbusName, triggerType: 'trigger', eventName: name, params });
+      const logData = { busName: this._eventbusName, triggerType: 'trigger', eventName: name, params };
+
+      logger.post(this._logLevel, !Utils.isNullOrUndef(this._eventScrubber) ? this._eventScrubber(logData) : logData);
 
       return super.trigger(...arguments);
    }
@@ -120,8 +141,9 @@ export default class TyphonLoggedEvents extends TyphonEvents
 
       const results = super.triggerFirst(...arguments);
 
-      logger.post(this._logLevel,
-       { busName: this._eventbusName, triggerType: 'triggerFirst', eventName: name, params, results });
+      const logData = { busName: this._eventbusName, triggerType: 'triggerFirst', eventName: name, params, results };
+
+      logger.post(this._logLevel, !Utils.isNullOrUndef(this._eventScrubber) ? this._eventScrubber(logData) : logData);
 
       return results;
    }
@@ -141,8 +163,9 @@ export default class TyphonLoggedEvents extends TyphonEvents
 
       const results = super.triggerResults(...arguments);
 
-      logger.post(this._logLevel,
-       { busName: this._eventbusName, triggerType: 'triggerResults', eventName: name, params, results });
+      const logData = { busName: this._eventbusName, triggerType: 'triggerResults', eventName: name, params, results };
+
+      logger.post(this._logLevel, !Utils.isNullOrUndef(this._eventScrubber) ? this._eventScrubber(logData) : logData);
 
       return results;
    }
@@ -161,7 +184,9 @@ export default class TyphonLoggedEvents extends TyphonEvents
    {
       const params = arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : undefined;
 
-      logger.post(this._logLevel, { busName: this._eventbusName, triggerType: 'triggerThen', eventName: name, params });
+      const logData = { busName: this._eventbusName, triggerType: 'triggerThen', eventName: name, params };
+
+      logger.post(this._logLevel, !Utils.isNullOrUndef(this._eventScrubber) ? this._eventScrubber(logData) : logData);
 
       return super.triggerThen(...arguments);
    }

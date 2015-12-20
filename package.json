@@ -12,18 +12,19 @@
     "main": false,
     "dependencies": {
       "backbone-es6": "github:typhonjs/backbone-es6@master",
-      "logger": "github:typhonjs/typhonjs-core-logging@master",
+      "typhonjs-core-logging": "github:typhonjs/typhonjs-core-logging@master",
+      "typhonjs-core-utils": "github:typhonjs/typhonjs-core-utils@master",
       "underscore": "npm:underscore@^1.8.3"
     },
     "devDependencies": {
-      "babel": "npm:babel-core@^5.8.25",
-      "babel-runtime": "npm:babel-runtime@^5.8.25",
+      "babel": "npm:babel-core@^5.8.34",
+      "babel-runtime": "npm:babel-runtime@^5.8.34",
       "core-js": "npm:core-js@^1.2.1"
     }
   },
   "devDependencies": {
     "gulp": "^3.9.0",
-    "jspm": "^0.16.15",
+    "jspm": "^0.16.19",
     "typhonjs-config-eslint": "^0.2.1",
     "typhonjs-core-gulptasks": "^0.3.0"
   }
