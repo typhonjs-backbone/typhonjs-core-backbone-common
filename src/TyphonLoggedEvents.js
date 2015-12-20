@@ -115,9 +115,10 @@ export default class TyphonLoggedEvents extends TyphonEvents
     * @param {string}   name  - Event name(s)
     * @returns {TyphonLoggedEvents}
     */
+//      _.map(a, _.clone)
    trigger(name)
    {
-      const params = arguments.length > 1 ? _.clone(Array.prototype.slice.call(arguments, 1)) : [];
+      const params = arguments.length > 1 ? _.map(Array.prototype.slice.call(arguments, 1), _.clone) : [];
 
       const logData = { busName: this._eventbusName, triggerType: 'trigger', eventName: name, params };
 
@@ -137,7 +138,7 @@ export default class TyphonLoggedEvents extends TyphonEvents
     */
    triggerFirst(name)
    {
-      const params = arguments.length > 1 ? _.clone(Array.prototype.slice.call(arguments, 1)) : [];
+      const params = arguments.length > 1 ? _.map(Array.prototype.slice.call(arguments, 1), _.clone) : [];
 
       const results = super.triggerFirst(...arguments);
 
@@ -159,7 +160,7 @@ export default class TyphonLoggedEvents extends TyphonEvents
     */
    triggerResults(name)
    {
-      const params = arguments.length > 1 ? _.clone(Array.prototype.slice.call(arguments, 1)) : [];
+      const params = arguments.length > 1 ? _.map(Array.prototype.slice.call(arguments, 1), _.clone) : [];
 
       const results = super.triggerResults(...arguments);
 
@@ -182,7 +183,7 @@ export default class TyphonLoggedEvents extends TyphonEvents
     */
    triggerThen(name)
    {
-      const params = arguments.length > 1 ? _.clone(Array.prototype.slice.call(arguments, 1)) : [];
+      const params = arguments.length > 1 ? _.map(Array.prototype.slice.call(arguments, 1), _.clone) : [];
 
       const logData = { busName: this._eventbusName, triggerType: 'triggerThen', eventName: name, params };
 
