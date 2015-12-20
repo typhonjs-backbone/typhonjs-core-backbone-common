@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">typhonjs-core-backbone-common/src/typhonExtend.js | typhonjs-core-backbone-common API Document</title>
+  <base data-ice="baseUrl" href="../../../../../../../">
+  <title data-ice="title">typhonjs-core-logging/src/ConsoleLogger.js | typhonjs-core-backbone-common API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -58,105 +58,136 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">typhonjs-core-backbone-common/src/typhonExtend.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * typhonExtend.js (TyphonJS) -- Extends Backbone for use with TyphonJS.
- */
+<div class="content" data-ice="content"><h1 data-ice="title">typhonjs-core-logging/src/ConsoleLogger.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
 
-&apos;use strict&apos;;
-
-import _ from &apos;underscore&apos;;
+/* eslint-disable no-console */
 
 /**
- * Provides support for TyphonJS adding several methods to Backbone.
- *
- * @param {Backbone} Backbone - Backbone instance
+ * ConsoleLogger.js -- Provides basic logging functionality with all log messages posting to `console.log`.
+ * Trace will also output &quot;console.trace()&quot; after the log message is posted.
  */
-export default function typhonExtend(Backbone)
+export default class ConsoleLogger
 {
-   Backbone.isCollection = (collection) =&gt;
+   /**
+    * Sets the serializer; defaults to `JSON` if none supplied.
+    *
+    * @param {Object} serializer - An instance that conform to the JSON API.
+    */
+   constructor(serializer = JSON)
    {
-      return !_.isUndefined(collection) &amp;&amp; collection !== null &amp;&amp; collection instanceof Backbone.Collection;
-   };
+      this.setSerializer(serializer);
+   }
 
-   Backbone.isEventbus = (eventbus) =&gt;
+   /**
+    * Post debug message.
+    */
+   debug()
    {
-      return !_.isUndefined(eventbus) &amp;&amp; eventbus !== null &amp;&amp; (eventbus instanceof Backbone.Events ||
-       eventbus instanceof Backbone.Events.constructor);
-   };
+      let message;
 
-   Backbone.isViewCtor = (viewCtor) =&gt;
+      // Attempt to convert the arguments to a string.
+      try { message = this._serializer.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Debug: ${message}`); }
+   }
+
+   /**
+    * Post error message.
+    */
+   error()
    {
-      return !_.isUndefined(viewCtor) &amp;&amp; viewCtor !== null &amp;&amp; viewCtor instanceof Backbone.View.constructor;
-   };
+      let message;
 
-   Backbone.isModel = (model) =&gt;
+      // Attempt to convert the arguments to a string.
+      try { message = this._serializer.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Error: ${message}`); }
+   }
+
+   /**
+    * Post fatal message.
+    */
+   fatal()
    {
-      return !_.isUndefined(model) &amp;&amp; model !== null &amp;&amp; model instanceof Backbone.Model;
-   };
+      let message;
 
-// Add ViewController support to Backbone.View ----------------------------------------------------------------------
+      // Attempt to convert the arguments to a string.
+      try { message = this._serializer.stringify(arguments); }
+      catch(ignore) { /* ignore */}
 
-   Backbone.View.prototype.close = function(remove = false)
+      if (message !== undefined) { console.log(`Fatal: ${message}`); }
+   }
+
+   /**
+    * Returns the serializer.
+    *
+    * @returns {Object|*}
+    */
+   getSerializer()
    {
-      if (!_.isBoolean(remove))
+      return this._serializer;
+   }
+
+   /**
+    * Post info message.
+    */
+   info()
+   {
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = this._serializer.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Info: ${message}`); }
+   }
+
+   /**
+    * Sets the serializer which must conform to the JSON API.
+    *
+    * @param {Object}   serializer - An instance of a JSON like serializer.
+    */
+   setSerializer(serializer)
+   {
+      if (typeof serializer !== &apos;object&apos; || typeof serializer.stringify !== &apos;function&apos; ||
+       typeof serializer.parse !== &apos;function&apos;)
       {
-         throw new TypeError(&apos;close - remove is not a boolean.&apos;);
+         throw new TypeError(&apos;setSerializer - `serializer` does not conform to the JSON API.&apos;);
       }
 
-      if (this.onBeforeClose)
-      {
-         // onBeforeClose may veto closing
-         let closeable = this.onBeforeClose();
-         closeable = _.isBoolean(closeable) ? closeable : true;
+      this._serializer = serializer;
+   }
 
-         if (!closeable)
-         {
-            return false;
-         }
-      }
-
-      this.stopListening();
-      this.unbind();
-      this.undelegateEvents();
-
-      if (remove)
-      {
-         this.$el.remove();
-      }
-      else
-      {
-         this.$el.empty();
-      }
-
-      if (this.onDestroy)
-      {
-         this.onDestroy();
-      }
-
-      return true;
-   };
-
-// Empty function that gets called by ViewController.setCurrentView when the same view is requested to be shown;
-// useful for passing messages to views.
-   Backbone.View.prototype.onContinue = () =&gt; {};
-
-
-// The following functions provide lifecycle events used in various group views like tab-view-group.js
-   Backbone.View.prototype.onStart = function()
+   /**
+    * Post trace message.
+    */
+   trace()
    {
-      this.render();
-   };
+      let message;
 
-   Backbone.View.prototype.onResume = function()
-   {
-      this.render();
-   };
+      // Attempt to convert the arguments to a string.
+      try { message = this._serializer.stringify(arguments); }
+      catch(ignore) { /* ignore */}
 
-   Backbone.View.prototype.onPause = function()
+      if (message !== undefined) { console.log(`Trace: ${message}`); console.trace(); }
+   }
+
+   /**
+    * Post warn message.
+    */
+   warn()
    {
-      this.undelegateEvents();
-   };
+      let message;
+
+      // Attempt to convert the arguments to a string.
+      try { message = this._serializer.stringify(arguments); }
+      catch(ignore) { /* ignore */}
+
+      if (message !== undefined) { console.log(`Warn: ${message}`); }
+   }
 }</code></pre>
 
 </div>

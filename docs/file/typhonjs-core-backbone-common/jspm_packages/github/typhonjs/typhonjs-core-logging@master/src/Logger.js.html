@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../../../../../">
-  <title data-ice="title">backbone-es6/src/sync.js | typhonjs-core-backbone-common API Document</title>
+  <title data-ice="title">typhonjs-core-logging/src/Logger.js | typhonjs-core-backbone-common API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -58,121 +58,288 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">backbone-es6/src/sync.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">typhonjs-core-logging/src/Logger.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
 
-import _             from &apos;underscore&apos;;
-import BackboneProxy from &apos;./BackboneProxy.js&apos;;
-import Utils         from &apos;./Utils.js&apos;;
+const s_ALL_LOGGING_ENABLED = true;
 
-/**
- * Map from CRUD to HTTP for our default `Backbone.sync` implementation.
- * @type {{create: string, update: string, patch: string, delete: string, read: string}}
- */
-const s_METHOD_MAP =
+const s_LOG_LEVELS =
 {
-   &apos;create&apos;: &apos;POST&apos;,
-   &apos;update&apos;: &apos;PUT&apos;,
-   &apos;patch&apos;: &apos;PATCH&apos;,
-   &apos;delete&apos;: &apos;DELETE&apos;,
-   &apos;read&apos;: &apos;GET&apos;
+   off: 7,
+   fatal: 6,
+   error: 5,
+   warn: 4,
+   info: 3,
+   debug: 2,
+   trace: 1,
+   all: 0
 };
 
-/**
- * Backbone.sync - Persists models to the server. (http://backbonejs.org/#Sync)
- * -------------
- *
- * Override this function to change the manner in which Backbone persists models to the server. You will be passed the
- * type of request, and the model in question. By default, makes a RESTful Ajax request to the model&apos;s `url()`. Some
- * possible customizations could be:
- *
- * Use `setTimeout` to batch rapid-fire updates into a single request.
- * Send up the models as XML instead of JSON.
- * Persist models via WebSockets instead of Ajax.
- *
- * Turn on `Backbone.emulateHTTP` in order to send `PUT` and `DELETE` requests as `POST`, with a `_method` parameter
- * containing the true HTTP method, as well as all requests with the body as `application/x-www-form-urlencoded`
- * instead of `application/json` with the model in a param named `model`. Useful when interfacing with server-side
- * languages like **PHP** that make it difficult to read the body of `PUT` requests.
- *
- * @param {string}            method   - A string that defines the synchronization action to perform.
- * @param {Model|Collection}  model    - The model or collection instance to synchronize.
- * @param {object}            options  - Optional parameters
- * @returns {XMLHttpRequest}  An XMLHttpRequest
- */
-export default function sync(method, model, options = {})
+const s_IS_LEVEL_ENABLED = (currentLevel, requestedLevel) =&gt;
 {
-   const type = s_METHOD_MAP[method];
+   return currentLevel &lt;= requestedLevel &amp;&amp; s_ALL_LOGGING_ENABLED;
+};
 
-   // Default options, unless specified.
-   _.defaults(options,
+/* eslint-disable no-console */
+
+/**
+ * Logger.js -- Provides dispatch to logging plugins. Logging can be turned off via invoking &quot;setLogLevel(&apos;off&apos;)&quot;.
+ * By default all logging is enabled and the context is set to `default`. Add one or more logger plugins by invoking
+ * the `setLogger` method. Change the logging context by invoking `setContext`.
+ *
+ * The following log levels are available in order of precedence: `off, fatal, error, warn, info, debug, trace, all`.
+ */
+export default class Logger
+{
+   /**
+    * Create the Logger with default values and all logging enabled.
+    */
+   constructor()
    {
-      emulateHTTP: BackboneProxy.backbone.emulateHTTP,
-      emulateJSON: BackboneProxy.backbone.emulateJSON
-   });
-
-   // Default JSON-request options.
-   const params = { type, dataType: &apos;json&apos; };
-
-   // Ensure that we have a URL.
-   if (!options.url)
-   {
-      params.url = _.result(model, &apos;url&apos;) || Utils.urlError();
+      this._context = &apos;default&apos;;
+      this._logLevel = s_LOG_LEVELS[&apos;all&apos;];
+      this._loggerMap = new Map();
    }
 
-   // Ensure that we have the appropriate request data.
-   if (Utils.isNullOrUndef(options.data) &amp;&amp; model &amp;&amp; (method === &apos;create&apos; || method === &apos;update&apos; || method === &apos;patch&apos;))
+   /**
+    * Dispatch to the `logger-&gt;debug` if it exists and the log level is enabled.
+    */
+   debug()
    {
-      params.contentType = &apos;application/json&apos;;
-      params.data = JSON.stringify(options.attrs || model.toJSON(options));
-   }
+      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS[&apos;debug&apos;]);
+      const logger = this._loggerMap.get(this._context);
 
-   // For older servers, emulate JSON by encoding the request into an HTML-form.
-   if (options.emulateJSON)
-   {
-      params.contentType = &apos;application/x-www-form-urlencoded&apos;;
-      params.data = params.data ? { model: params.data } : {};
-   }
-
-   // For older servers, emulate HTTP by mimicking the HTTP method with `_method`
-   // And an `X-HTTP-Method-Override` header.
-   if (options.emulateHTTP &amp;&amp; (type === &apos;PUT&apos; || type === &apos;DELETE&apos; || type === &apos;PATCH&apos;))
-   {
-      params.type = &apos;POST&apos;;
-
-      if (options.emulateJSON) { params.data._method = type; }
-
-      const beforeSend = options.beforeSend;
-
-      options.beforeSend = function(xhr)
+      if (enabled &amp;&amp; logger &amp;&amp; logger.debug)
       {
-         xhr.setRequestHeader(&apos;X-HTTP-Method-Override&apos;, type);
-         if (beforeSend) { return beforeSend.apply(this, arguments); }
-      };
+         logger.debug(...arguments);
+      }
    }
 
-   // Don&apos;t process data on a non-GET request.
-   if (params.type !== &apos;GET&apos; &amp;&amp; !options.emulateJSON)
+   /**
+    * Dispatch to the `logger-&gt;error` if it exists and the log level is enabled.
+    */
+   error()
    {
-      params.processData = false;
+      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS[&apos;error&apos;]);
+      const logger = this._loggerMap.get(this._context);
+
+      if (enabled &amp;&amp; logger)
+      {
+         logger.error(...arguments);
+      }
    }
 
-   // Pass along `textStatus` and `errorThrown` from jQuery.
-   const error = options.error;
-
-   options.error = function(xhr, textStatus, errorThrown)
+   /**
+    * Dispatch to the `logger-&gt;fatal` if it exists and the log level is enabled.
+    */
+   fatal()
    {
-      options.textStatus = textStatus;
-      options.errorThrown = errorThrown;
-      if (error) { error.call(options.context, xhr, textStatus, errorThrown); }
-   };
+      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS[&apos;fatal&apos;]);
+      const logger = this._loggerMap.get(this._context);
 
-   // Make the request, allowing the user to override any Ajax options.
-   const xhr = options.xhr = BackboneProxy.backbone.ajax(_.extend(params, options));
+      if (enabled &amp;&amp; logger)
+      {
+         logger.fatal(...arguments);
+      }
+   }
 
-   model.trigger(&apos;request&apos;, model, xhr, options);
+   /**
+    * Get the current context.
+    *
+    * @returns {string|*}
+    */
+   getContext()
+   {
+      return this._context;
+   }
 
-   return xhr;
+   /**
+    * Get the logger by the given context.
+    *
+    * @param {*}  context - the context to use for logger retrieval.
+    * @returns {*}
+    */
+   getLogger(context)
+   {
+      return this._loggerMap.get(context);
+   }
+
+   /**
+    * Returns whether a logger is defined by the given context.
+    *
+    * @param {*}  context - the context to check.
+    * @returns {*}
+    */
+   hasContext(context)
+   {
+      return this._loggerMap.get(context) !== undefined;
+   }
+
+   /**
+    * Returns whether the given log level is enabled.
+    *
+    * @param {string}   level - log level
+    * @returns {boolean}
+    */
+   isLevelEnabled(level)
+   {
+      const requestedLevel = s_LOG_LEVELS[level];
+
+      if (typeof requestedLevel === &apos;undefined&apos; || requestedLevel === null)
+      {
+         console.log(`isLevelEnabled - unknown log level: ${level}`);
+         return false;
+      }
+
+      return s_IS_LEVEL_ENABLED(this._logLevel, requestedLevel);
+   }
+
+   /**
+    * Dispatch to the `logger-&gt;info` if it exists and the log level is enabled.
+    */
+   info()
+   {
+      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS[&apos;info&apos;]);
+      const logger = this._loggerMap.get(this._context);
+
+      if (enabled &amp;&amp; logger)
+      {
+         logger.info(...arguments);
+      }
+   }
+
+   /**
+    * Posts a log message given a log level and parameters.
+    *
+    * @param {string}   level - log level
+    * @param {*}        params - log message parameters to forward onto dispatched method.
+    */
+   post(level, ...params)
+   {
+      if (typeof s_LOG_LEVELS[level] === &apos;undefined&apos;)
+      {
+         console.log(`post - unknown log level: ${level}`);
+         return;
+      }
+
+      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS[&apos;info&apos;]);
+      const logger = this._loggerMap.get(this._context);
+
+      if (enabled &amp;&amp; logger)
+      {
+         switch (level)
+         {
+            case &apos;fatal&apos;:
+               logger.fatal(...params);
+               break;
+
+            case &apos;error&apos;:
+               logger.error(...params);
+               break;
+
+            case &apos;warn&apos;:
+               logger.warn(...params);
+               break;
+
+            case &apos;info&apos;:
+               logger.info(...params);
+               break;
+
+            case &apos;debug&apos;:
+               logger.debug(...params);
+               break;
+
+            case &apos;trace&apos;:
+               logger.trace(...params);
+               break;
+         }
+      }
+   }
+
+   /**
+    * Removes the logger by the given context.
+    *
+    * @param {*}  context - The context to check.
+    */
+   removeLogger(context)
+   {
+      this._loggerMap.delete(context);
+   }
+
+   /**
+    * Sets the current context
+    *
+    * @param {*}  context - The context to set.
+    * @returns {boolean}
+    */
+   setContext(context)
+   {
+      if (typeof context === &apos;undefined&apos; || context === null)
+      {
+         console.log(`setContext - context is not defined or null: ${context}`);
+         return false;
+      }
+
+      this._context = context;
+   }
+
+   /**
+    * Sets the current log level.
+    *
+    * @param {string}   level - log level
+    * @returns {boolean}
+    */
+   setLogLevel(level)
+   {
+      const requestedLevel = s_LOG_LEVELS[level];
+
+      if (typeof requestedLevel === &apos;undefined&apos; || requestedLevel === null)
+      {
+         console.log(`setLogLevel - unknown log level: ${level}`);
+         return false;
+      }
+
+      this._logLevel = requestedLevel;
+   }
+
+   /**
+    * Sets the logger for the give context.
+    *
+    * @param {*}  context - The context to set.
+    * @param {*}  logger - The logger to set.
+    */
+   setLogger(context, logger)
+   {
+      this._loggerMap.set(context, logger);
+   }
+
+   /**
+    * Dispatch to the `logger-&gt;trace` if it exists and the log level is enabled.
+    */
+   trace()
+   {
+      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS[&apos;trace&apos;]);
+      const logger = this._loggerMap.get(this._context);
+
+      if (enabled &amp;&amp; logger)
+      {
+         logger.trace(...arguments);
+      }
+   }
+
+   /**
+    * Dispatch to the `logger-&gt;warn` if it exists and the log level is enabled.
+    */
+   warn()
+   {
+      const enabled = s_IS_LEVEL_ENABLED(this._logLevel, s_LOG_LEVELS[&apos;warn&apos;]);
+      const logger = this._loggerMap.get(this._context);
+
+      if (enabled &amp;&amp; logger)
+      {
+         logger.warn(...arguments);
+      }
+   }
 }</code></pre>
 
 </div>

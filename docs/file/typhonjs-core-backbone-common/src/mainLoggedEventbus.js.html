@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">typhonjs-core-backbone-common/src/typhonExtend.js | typhonjs-core-backbone-common API Document</title>
+  <title data-ice="title">typhonjs-core-backbone-common/src/mainLoggedEventbus.js | typhonjs-core-backbone-common API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -58,106 +58,28 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">typhonjs-core-backbone-common/src/typhonExtend.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * typhonExtend.js (TyphonJS) -- Extends Backbone for use with TyphonJS.
- */
+<div class="content" data-ice="content"><h1 data-ice="title">typhonjs-core-backbone-common/src/mainLoggedEventbus.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
 
-&apos;use strict&apos;;
+import TyphonLoggedEvents  from &apos;./TyphonLoggedEvents.js&apos;;
 
-import _ from &apos;underscore&apos;;
+const eventbus = new TyphonLoggedEvents();
+
+eventbus.setEventbusName(&apos;mainEventbus&apos;);
 
 /**
- * Provides support for TyphonJS adding several methods to Backbone.
+ * Exports an instance of `TyphonLoggedEvents` which adds asynchronous capabilities to `Backbone.Events` which is used
+ * as a main eventbus. Note that an instance of `TyphonLoggedEvents` is exported and is also associated to a mapped
+ * path, `mainEventbus` in the SystemJS extra configuration data loaded by all TyphonJS repos in
+ * `./config/config-app-paths.js`. By using a mapped path any other module may import the main eventbus via:
+ * `import eventbus from &apos;mainEventbus&apos;;`
  *
- * @param {Backbone} Backbone - Backbone instance
+ * Note the above creation of `const eventbus` is a workaround for an ESDoc bug:
+ * https://github.com/esdoc/esdoc/issues/166
+ *
+ * Normally we can write `export default new TyphonLoggedEvents();`, but this currently breaks ESDoc.
  */
-export default function typhonExtend(Backbone)
-{
-   Backbone.isCollection = (collection) =&gt;
-   {
-      return !_.isUndefined(collection) &amp;&amp; collection !== null &amp;&amp; collection instanceof Backbone.Collection;
-   };
-
-   Backbone.isEventbus = (eventbus) =&gt;
-   {
-      return !_.isUndefined(eventbus) &amp;&amp; eventbus !== null &amp;&amp; (eventbus instanceof Backbone.Events ||
-       eventbus instanceof Backbone.Events.constructor);
-   };
-
-   Backbone.isViewCtor = (viewCtor) =&gt;
-   {
-      return !_.isUndefined(viewCtor) &amp;&amp; viewCtor !== null &amp;&amp; viewCtor instanceof Backbone.View.constructor;
-   };
-
-   Backbone.isModel = (model) =&gt;
-   {
-      return !_.isUndefined(model) &amp;&amp; model !== null &amp;&amp; model instanceof Backbone.Model;
-   };
-
-// Add ViewController support to Backbone.View ----------------------------------------------------------------------
-
-   Backbone.View.prototype.close = function(remove = false)
-   {
-      if (!_.isBoolean(remove))
-      {
-         throw new TypeError(&apos;close - remove is not a boolean.&apos;);
-      }
-
-      if (this.onBeforeClose)
-      {
-         // onBeforeClose may veto closing
-         let closeable = this.onBeforeClose();
-         closeable = _.isBoolean(closeable) ? closeable : true;
-
-         if (!closeable)
-         {
-            return false;
-         }
-      }
-
-      this.stopListening();
-      this.unbind();
-      this.undelegateEvents();
-
-      if (remove)
-      {
-         this.$el.remove();
-      }
-      else
-      {
-         this.$el.empty();
-      }
-
-      if (this.onDestroy)
-      {
-         this.onDestroy();
-      }
-
-      return true;
-   };
-
-// Empty function that gets called by ViewController.setCurrentView when the same view is requested to be shown;
-// useful for passing messages to views.
-   Backbone.View.prototype.onContinue = () =&gt; {};
-
-
-// The following functions provide lifecycle events used in various group views like tab-view-group.js
-   Backbone.View.prototype.onStart = function()
-   {
-      this.render();
-   };
-
-   Backbone.View.prototype.onResume = function()
-   {
-      this.render();
-   };
-
-   Backbone.View.prototype.onPause = function()
-   {
-      this.undelegateEvents();
-   };
-}</code></pre>
+export default eventbus;</code></pre>
 
 </div>
 

@@ -18,9 +18,9 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "logger/src/consolelogger.js~consolelogger",
+    "typhonjs-core-logging/src/consolelogger.js~consolelogger",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html",
-    "<span>ConsoleLogger</span> <span class=\"search-result-import-path\">logger/src/ConsoleLogger.js</span>",
+    "<span>ConsoleLogger</span> <span class=\"search-result-import-path\">typhonjs-core-logging/src/ConsoleLogger.js</span>",
     "class"
   ],
   [
@@ -42,15 +42,21 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "logger/src/logger.js~logger",
+    "typhonjs-core-logging/src/logger.js~logger",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html",
-    "<span>Logger</span> <span class=\"search-result-import-path\">logger/src/Logger.js</span>",
+    "<span>Logger</span> <span class=\"search-result-import-path\">typhonjs-core-logging/src/Logger.js</span>",
     "class"
   ],
   [
     "backbone-es6/src/model.js~model",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/backbone-es6@master/src/Model.js~Model.html",
     "<span>Model</span> <span class=\"search-result-import-path\">backbone-es6/src/Model.js</span>",
+    "class"
+  ],
+  [
+    "typhonjs-core-utils/src/multimap.js~multimap",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html",
+    "<span>MultiMap</span> <span class=\"search-result-import-path\">typhonjs-core-utils/src/MultiMap.js</span>",
     "class"
   ],
   [
@@ -78,10 +84,22 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "typhonjs-core-utils/src/utils.js~utils",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/Utils.js~Utils.html",
+    "<span>Utils</span> <span class=\"search-result-import-path\">typhonjs-core-utils/src/Utils.js</span>",
+    "class"
+  ],
+  [
     "backbone-es6/src/view.js~view",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/backbone-es6@master/src/View.js~View.html",
     "<span>View</span> <span class=\"search-result-import-path\">backbone-es6/src/View.js</span>",
     "class"
+  ],
+  [
+    "typhonjs-core-utils/src/btoa.js~btoa",
+    "variable/index.html#static-variable-btoa",
+    "<span>btoa</span> <span class=\"search-result-import-path\">typhonjs-core-utils/src/btoa.js</span>",
+    "variable"
   ],
   [
     "backbone-es6/src/collection.js~collection",
@@ -1364,151 +1382,265 @@ window.esdocSearchIndex = [
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/consolelogger.js",
     "file/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js.html",
-    "logger/src/ConsoleLogger.js",
+    "typhonjs-core-logging/src/ConsoleLogger.js",
     "file"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/consolelogger.js~consolelogger#constructor",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html#instance-constructor-constructor",
+    "typhonjs-core-logging/src/ConsoleLogger.js~ConsoleLogger#constructor",
+    "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/consolelogger.js~consolelogger#debug",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-debug",
-    "logger/src/ConsoleLogger.js~ConsoleLogger#debug",
+    "typhonjs-core-logging/src/ConsoleLogger.js~ConsoleLogger#debug",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/consolelogger.js~consolelogger#error",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-error",
-    "logger/src/ConsoleLogger.js~ConsoleLogger#error",
+    "typhonjs-core-logging/src/ConsoleLogger.js~ConsoleLogger#error",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/consolelogger.js~consolelogger#fatal",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-fatal",
-    "logger/src/ConsoleLogger.js~ConsoleLogger#fatal",
+    "typhonjs-core-logging/src/ConsoleLogger.js~ConsoleLogger#fatal",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/consolelogger.js~consolelogger#getserializer",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-getSerializer",
+    "typhonjs-core-logging/src/ConsoleLogger.js~ConsoleLogger#getSerializer",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/consolelogger.js~consolelogger#info",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-info",
-    "logger/src/ConsoleLogger.js~ConsoleLogger#info",
+    "typhonjs-core-logging/src/ConsoleLogger.js~ConsoleLogger#info",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/consolelogger.js~consolelogger#setserializer",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-setSerializer",
+    "typhonjs-core-logging/src/ConsoleLogger.js~ConsoleLogger#setSerializer",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/consolelogger.js~consolelogger#trace",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-trace",
-    "logger/src/ConsoleLogger.js~ConsoleLogger#trace",
+    "typhonjs-core-logging/src/ConsoleLogger.js~ConsoleLogger#trace",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/consolelogger.js~consolelogger#warn",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/ConsoleLogger.js~ConsoleLogger.html#instance-method-warn",
-    "logger/src/ConsoleLogger.js~ConsoleLogger#warn",
+    "typhonjs-core-logging/src/ConsoleLogger.js~ConsoleLogger#warn",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js",
     "file/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js.html",
-    "logger/src/Logger.js",
+    "typhonjs-core-logging/src/Logger.js",
     "file"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#constructor",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-constructor-constructor",
-    "logger/src/Logger.js~Logger#constructor",
+    "typhonjs-core-logging/src/Logger.js~Logger#constructor",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#debug",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-debug",
-    "logger/src/Logger.js~Logger#debug",
+    "typhonjs-core-logging/src/Logger.js~Logger#debug",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#error",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-error",
-    "logger/src/Logger.js~Logger#error",
+    "typhonjs-core-logging/src/Logger.js~Logger#error",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#fatal",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-fatal",
-    "logger/src/Logger.js~Logger#fatal",
+    "typhonjs-core-logging/src/Logger.js~Logger#fatal",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#getcontext",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-getContext",
-    "logger/src/Logger.js~Logger#getContext",
+    "typhonjs-core-logging/src/Logger.js~Logger#getContext",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#getlogger",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-getLogger",
-    "logger/src/Logger.js~Logger#getLogger",
+    "typhonjs-core-logging/src/Logger.js~Logger#getLogger",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#hascontext",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-hasContext",
-    "logger/src/Logger.js~Logger#hasContext",
+    "typhonjs-core-logging/src/Logger.js~Logger#hasContext",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#info",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-info",
-    "logger/src/Logger.js~Logger#info",
+    "typhonjs-core-logging/src/Logger.js~Logger#info",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#islevelenabled",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-isLevelEnabled",
-    "logger/src/Logger.js~Logger#isLevelEnabled",
+    "typhonjs-core-logging/src/Logger.js~Logger#isLevelEnabled",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#post",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-post",
-    "logger/src/Logger.js~Logger#post",
+    "typhonjs-core-logging/src/Logger.js~Logger#post",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#removelogger",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-removeLogger",
-    "logger/src/Logger.js~Logger#removeLogger",
+    "typhonjs-core-logging/src/Logger.js~Logger#removeLogger",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#setcontext",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-setContext",
-    "logger/src/Logger.js~Logger#setContext",
+    "typhonjs-core-logging/src/Logger.js~Logger#setContext",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#setloglevel",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-setLogLevel",
-    "logger/src/Logger.js~Logger#setLogLevel",
+    "typhonjs-core-logging/src/Logger.js~Logger#setLogLevel",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#setlogger",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-setLogger",
-    "logger/src/Logger.js~Logger#setLogger",
+    "typhonjs-core-logging/src/Logger.js~Logger#setLogger",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#trace",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-trace",
-    "logger/src/Logger.js~Logger#trace",
+    "typhonjs-core-logging/src/Logger.js~Logger#trace",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/logger.js~logger#warn",
     "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/Logger.js~Logger.html#instance-method-warn",
-    "logger/src/Logger.js~Logger#warn",
+    "typhonjs-core-logging/src/Logger.js~Logger#warn",
     "method"
   ],
   [
     "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/loggermanager.js",
     "file/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-logging@master/src/LoggerManager.js.html",
-    "logger/src/LoggerManager.js",
+    "typhonjs-core-logging/src/LoggerManager.js",
+    "file"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js",
+    "file/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js.html",
+    "typhonjs-core-utils/src/MultiMap.js",
+    "file"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#clear",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-method-clear",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#clear",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#constructor",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-constructor-constructor",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#constructor",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#delete",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-method-delete",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#delete",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#entries",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-method-entries",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#entries",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#get",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-method-get",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#get",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#has",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-method-has",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#has",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#ismap",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-method-isMap",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#isMap",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#keys",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-method-keys",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#keys",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#set",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-method-set",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#set",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#size",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-method-size",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#size",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/multimap.js~multimap#values",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/MultiMap.js~MultiMap.html#instance-method-values",
+    "typhonjs-core-utils/src/MultiMap.js~MultiMap#values",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/utils.js",
+    "file/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/Utils.js.html",
+    "typhonjs-core-utils/src/Utils.js",
+    "file"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/utils.js~utils.isnullorundef",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/Utils.js~Utils.html#static-method-isNullOrUndef",
+    "typhonjs-core-utils/src/Utils.js~Utils.isNullOrUndef",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/utils.js~utils.istypeof",
+    "class/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/Utils.js~Utils.html#static-method-isTypeOf",
+    "typhonjs-core-utils/src/Utils.js~Utils.isTypeOf",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/btoa.js",
+    "file/typhonjs-core-backbone-common/jspm_packages/github/typhonjs/typhonjs-core-utils@master/src/btoa.js.html",
+    "typhonjs-core-utils/src/btoa.js",
     "file"
   ],
   [
@@ -1516,6 +1648,18 @@ window.esdocSearchIndex = [
     "file/typhonjs-core-backbone-common/src/TyphonEvents.js.html",
     "typhonjs-core-backbone-common/src/TyphonEvents.js",
     "file"
+  ],
+  [
+    "typhonjs-core-backbone-common/src/typhonevents.js~typhonevents#geteventbusname",
+    "class/typhonjs-core-backbone-common/src/TyphonEvents.js~TyphonEvents.html#instance-method-getEventbusName",
+    "typhonjs-core-backbone-common/src/TyphonEvents.js~TyphonEvents#getEventbusName",
+    "method"
+  ],
+  [
+    "typhonjs-core-backbone-common/src/typhonevents.js~typhonevents#seteventbusname",
+    "class/typhonjs-core-backbone-common/src/TyphonEvents.js~TyphonEvents.html#instance-method-setEventbusName",
+    "typhonjs-core-backbone-common/src/TyphonEvents.js~TyphonEvents#setEventbusName",
+    "method"
   ],
   [
     "typhonjs-core-backbone-common/src/typhonevents.js~typhonevents#triggerdefer",
@@ -1554,9 +1698,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "typhonjs-core-backbone-common/src/typhonloggedevents.js~typhonloggedevents#geteventbusname",
-    "class/typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents.html#instance-method-getEventbusName",
-    "typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents#getEventbusName",
+    "typhonjs-core-backbone-common/src/typhonloggedevents.js~typhonloggedevents#geteventscrubber",
+    "class/typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents.html#instance-method-getEventScrubber",
+    "typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents#getEventScrubber",
     "method"
   ],
   [
@@ -1566,9 +1710,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "typhonjs-core-backbone-common/src/typhonloggedevents.js~typhonloggedevents#seteventbusname",
-    "class/typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents.html#instance-method-setEventbusName",
-    "typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents#setEventbusName",
+    "typhonjs-core-backbone-common/src/typhonloggedevents.js~typhonloggedevents#seteventscrubber",
+    "class/typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents.html#instance-method-setEventScrubber",
+    "typhonjs-core-backbone-common/src/TyphonLoggedEvents.js~TyphonLoggedEvents#setEventScrubber",
     "method"
   ],
   [
