@@ -11,8 +11,6 @@
   "jspm": {
     "main": false,
     "dependencies": {
-      "backbone-es6": "github:typhonjs/backbone-es6@master",
-      "typhonjs-core-logging": "github:typhonjs/typhonjs-core-logging@master",
       "typhonjs-core-utils": "github:typhonjs/typhonjs-core-utils@master",
       "underscore": "npm:underscore@^1.8.3"
     },

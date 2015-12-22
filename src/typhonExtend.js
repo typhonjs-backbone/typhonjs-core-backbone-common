@@ -1,10 +1,8 @@
-/**
- * typhonExtend.js (TyphonJS) -- Extends Backbone for use with TyphonJS.
- */
-
 'use strict';
 
-import _ from 'underscore';
+import _       from 'underscore';
+
+import Utils   from 'typhonjs-core-utils/src/Utils.js';
 
 /**
  * Provides support for TyphonJS adding several methods to Backbone.
@@ -15,23 +13,23 @@ export default function typhonExtend(Backbone)
 {
    Backbone.isCollection = (collection) =>
    {
-      return !_.isUndefined(collection) && collection !== null && collection instanceof Backbone.Collection;
+      return !Utils.isNullOrUndef(collection) && collection instanceof Backbone.Collection;
    };
 
    Backbone.isEventbus = (eventbus) =>
    {
-      return !_.isUndefined(eventbus) && eventbus !== null && (eventbus instanceof Backbone.Events ||
+      return !Utils.isNullOrUndef(eventbus) && (eventbus instanceof Backbone.Events ||
        eventbus instanceof Backbone.Events.constructor);
    };
 
    Backbone.isViewCtor = (viewCtor) =>
    {
-      return !_.isUndefined(viewCtor) && viewCtor !== null && viewCtor instanceof Backbone.View.constructor;
+      return !Utils.isNullOrUndef(viewCtor) && viewCtor instanceof Backbone.View.constructor;
    };
 
    Backbone.isModel = (model) =>
    {
-      return !_.isUndefined(model) && model !== null && model instanceof Backbone.Model;
+      return !Utils.isNullOrUndef(model) && model instanceof Backbone.Model;
    };
 
 // Add ViewController support to Backbone.View ----------------------------------------------------------------------
