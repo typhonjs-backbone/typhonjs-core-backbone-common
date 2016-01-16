@@ -9,6 +9,7 @@
     "url": "https://github.com/typhonjs/typhonjs-core-backbone-common/typhonjs-core-backbone-common.git"
   },
   "jspm": {
+    "main": false,
     "dependencies": {
       "typhonjs-core-utils": "github:typhonjs/typhonjs-core-utils@master",
       "underscore": "npm:underscore@^1.8.3"
