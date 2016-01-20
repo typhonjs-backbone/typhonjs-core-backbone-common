@@ -9,7 +9,6 @@
     "url": "https://github.com/typhonjs/typhonjs-core-backbone-common/typhonjs-core-backbone-common.git"
   },
   "jspm": {
-    "main": false,
     "dependencies": {
       "typhonjs-core-utils": "github:typhonjs/typhonjs-core-utils@master",
       "underscore": "npm:underscore@^1.8.3"
@@ -22,7 +21,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
-    "jspm": "^0.16.23",
+    "jspm": "^0.16.24",
     "typhonjs-config-eslint": "^0.2.1",
     "typhonjs-core-gulptasks": "^0.4.1"
   }
