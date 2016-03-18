@@ -1,17 +1,20 @@
 {
   "name": "typhonjs-core-backbone-common",
   "version": "0.1.0",
-  "homepage": "https://github.com/typhonjs/typhonjs-core-backbone-common/",
+  "homepage": "https://github.com/typhonjs-backbone/typhonjs-core-backbone-common/",
   "description": "Provides the common TyphonJS extensions to Backbone-ES6.",
-  "license": "MIT",
+  "license": "MPL-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/typhonjs/typhonjs-core-backbone-common/typhonjs-core-backbone-common.git"
+    "url": "https://github.com/typhonjs-backbone/typhonjs-core-backbone-common/typhonjs-core-backbone-common.git"
+  },
+  "bugs": {
+    "url": "https://github.com/typhonjs-backbone/typhonjs-core-backbone-common/issues"
   },
   "jspm": {
     "main": false,
     "dependencies": {
-      "typhonjs-core-utils": "github:typhonjs/typhonjs-core-utils@master",
+      "typhonjs-core-utils": "github:typhonjs-common/typhonjs-core-utils@master",
       "underscore": "npm:underscore@^1.8.3"
     },
     "devDependencies": {
@@ -21,9 +24,10 @@
     }
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "jspm": "^0.16.25",
-    "typhonjs-config-eslint": "^0.2.1",
-    "typhonjs-core-gulptasks": "^0.5.0"
+    "gulp": "^3.0.0",
+    "jspm": "^0.16.0",
+    "typhonjs-config-eslint": "^0.4.0",
+    "typhonjs-core-gulptasks": "^0.6.0",
+    "typhonjs-npm-build-test": "^0.1.0"
   }
 }
